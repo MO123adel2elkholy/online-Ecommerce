@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+    <style>
+        .one{background-color:cyan;height:60px;color:#000}
+         .for{width:220px; height:300px;background-color:cyan; margin-left:500px;border-radius:10%; margin-top:30px;cd}
+         label{padding-left:20px; margin-top:10px;color:#000;}
+         input{margin-left:20px; background-color:black; color:#fff;}
+         .submit{background-color:green; color:#000; margin-left:75px;}
+         .submit:hover{background-color:red;}
+         body{background-color:black;}
+          a{text-decoration:none;
+          border:2px solid cyan;
+          background-color:cyan;
+          margin-top:30px;
+          margin-left:550px;
+          color:black;
+          display:block;
+          width:70px;
+          padding-left:20px;
+          }
+         a:hover{background-color:red;}}
+    </style>
+</head>
+<body>
+
+{% block body %}
+<main>
+    <div class="container">
+        <br>
+        <form action="" method="post">
+            {%csrf_token%}
+            {{form}}
+            <br>
+            <button type="submit" class="btn btn-primary"> Signup</button>
+
+        </form>
+    </div>
+</main>
+{% endblock body %}
+</body>
+</html>

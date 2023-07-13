@@ -1,0 +1,120 @@
+{%extends 'base.html'%}
+{% load static %}
+ <!--Main layout-->
+    {%block body %}
+<!--Main layout-->
+<main class="mt-5 pt-4">
+    <div class="container mt-5">
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+                {% if one_pro.proIimage %}
+          <img class="card-img-top"  src="{{one_pro.proIimage.url}}" alt="Card image cap">
+        {%else%}
+          <img class="card-img-top product_img mt-5" src="{%static 'img/noimage.png'%}" alt="Card image cap">
+        {% endif %}
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-md-6 mb-4">
+                <!--Content-->
+                <div class="p-4">
+                    <div class="mb-3">
+                        {% if one_pro.prodiscount > 0 %}
+                        <a href="">
+                            <span class="badge bg-success me-1">SALE</span>
+                        </a>
+                        {% endif %}
+                        {% if one_pro.proisnew %}
+                        <a href="">
+                            <span class="badge bg-info me-1">New</span>
+                        </a>
+                        {% endif %}
+
+                        {% if one_pro.proisbest %}
+                        <a href="">
+                            <span class="badge bg-danger me-1">Bestseller</span>
+                        </a>
+                         {% endif %}
+                    </div>
+                    <strong><p style="font-size: 20px;">{{one_pro}}</p></strong>
+                    <p class="lead">
+                        {% if one_pro.prodiscount > 0 %}
+                        <span class="me-1">
+                            <del>{{one_pro.proprice}}$</del>
+                        </span>
+                        <span>{{one_pro.prodiscount}}$</span>
+                        {% else %}
+                        <span>{{one_pro.proprice}}$</span>
+                        {% endif %}
+                    </p>
+
+                    <strong><p style="font-size: 20px;">Description</p></strong>
+
+                           <p> {{one_pro.prodescription}}</p>
+                    <form class="d-flex justify-content-left">
+                        <!-- Default input -->
+                        <div class="form-outline me-1" style="width: 100px;">
+                            <input type="number" value="1" class="form-control" />
+                        </div>
+                        <button class="btn btn-primary ms-1" type="submit">
+                            Add to cart
+                            <i class="fas fa-shopping-cart ms-1"></i>
+                        </button>
+                    </form>
+                </div>
+                <!--Content-->
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+
+        <hr />
+
+        <!--Grid row-->
+        <div class="row d-flex justify-content-center">
+            <!--Grid column-->
+            <div class="col-md-6 text-center">
+                <h4 class="my-4 h4">Accessories</h4>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/11.jpg" class="img-fluid" alt="" />
+                <div class="col-md-6 text-center">
+                <h4 class="my-4 h4">Accessories</h4>
+            </div>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="" />
+                <div class="col-md-6 text-center">
+                <h4 class="my-4 h4">Accessories</h4>
+            </div>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="" />
+                <div class="col-md-6 text-center">
+                <h4 class="my-4 h4">Accessories</h4>
+            </div>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </div>
+</main>
+{% endblock body %}
+<!--Main layout-->
+

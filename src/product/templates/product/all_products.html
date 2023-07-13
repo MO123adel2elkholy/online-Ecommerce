@@ -1,0 +1,153 @@
+{%load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'css/style.css'%}">
+  <title>Souq|Store</title>
+</head>
+
+<body>
+
+  <!--  Nave bar  -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Souq Store</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Catogries
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <div class="m-3">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Cart <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+             Mahmoud
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#"> Profile</a>
+              <a class="dropdown-item" href="#">Edite  Profile</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">My Orders</a>
+              <a class="dropdown-item" href="#"> Track My Orders</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#"> Change Password </a>
+            </div>
+          </li>
+        </ul>
+        <!-- <a href=""> Cart</a>
+        <a href=""> Profile</a> -->
+
+      </div>
+    </div>
+  </nav>
+  <!-- products grid system  -->
+  <div style="margin-left:200px;">
+  <div class="container mt-5 mb-5">
+    <div class="row">
+
+      <!--  -->
+      {%for product in all_products%}
+      <div class=" col-md-3  card" style="width: 18rem;">
+        {% if product.proIimage %}
+          <img class="card-img-top product_img mt-3" src="{{product.proIimage.url}}" alt="Card image cap">
+        {%else%}
+          <img class="card-img-top product_img mt-5" src="{%static 'img/noimage.png'%}" alt="Card image cap">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title"><a href="{%url 'one_product' product.id%}" style="text-decoration:none;">{{product}}</a></h5>
+          <p class="card-text">
+            {{product.prodescription }}
+          </p>
+            <a href="#" class="btn btn-primary">Add to Cart </a>
+        </div>
+      </div>
+      {%endfor%}
+      <!--  -->
+    </div>
+  </div>
+</div>
+
+  <!--  pagination  -->
+
+
+
+
+
+<div class="container">
+  <div class="row">
+
+
+<!--    django pagination -->
+    {% for contact in all_products %}
+    {# Each "contact" is a Contact model object. #}
+    {{ contact.full_name|upper }}<br>
+    ...
+{% endfor %}
+<div style="margin:0 auto ;  ">
+<div class="pagination">
+    <span class="step-links">
+        {% if all_products.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ all_products.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ all_products.number }} of {{ all_products.paginator.num_pages }}.
+        </span>
+
+        {% if all_products.has_next %}
+            <a href="?page={{ all_products.next_page_number }}">next</a>
+            <a href="?page={{ all_products.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+
+  </div>
+</div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
